@@ -7,3 +7,6 @@ class NutritionEntry:
         self.name = name
         self.timestamp = timestamp
         self.calories = calories
+
+    def __str__(self):
+        return f"{self.associated_user}, {self.name}, {self.timestamp}, {self.calories}"
