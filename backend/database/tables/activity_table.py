@@ -1,10 +1,10 @@
-from models.activity import Activity
-from tables.database_table import DatabaseTable
+from database.tables.models.activity import Activity
+from database.tables.database_table import DatabaseTable
 
 class ActivityTable(DatabaseTable):
-    
+
     def get_activities(self, username:str) -> list[Activity]:
-        results = self.execute_query(f"SELECT * FROM Activities WHERE associated_user = {username}")
+        results = self.execute_query(f"SELECT * FROM Activities WHERE associated_user = '{username}'")
         activity_list = []
         for row in results:
             new_activity = Activity(*row)

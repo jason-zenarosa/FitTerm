@@ -10,4 +10,4 @@ class Activity:
         self.completion = completion
 
     def __str__(self):
-        return f"{self.associated_user}, {self.name}, {self.description}, {self.timestamp}, {self.completion}"
+        return f"'{self.associated_user}', '{self.name}', '{self.description}', '{self.timestamp}', '{self.completion}'"

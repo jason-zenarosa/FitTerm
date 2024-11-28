@@ -1,10 +1,10 @@
-from models.user import User
-from tables.database_table import DatabaseTable
+from database.tables.models.user import User
+from database.tables.database_table import DatabaseTable
 
 class UserTable(DatabaseTable):
     
     def get_user(self, username) -> User | None:
-        results = self.execute_query(f"SELECT * FROM Users WHERE username = {username}")
+        results = self.execute_query(f"SELECT * FROM Users WHERE username = '{username}'")
         if len(results) == 0:
             return None
         user = results[0]
@@ -16,4 +16,3 @@ class UserTable(DatabaseTable):
             INSERT INTO Users (username, password)
             VALUES ({user})                 
         """)
-        
