@@ -14,12 +14,20 @@ def create_user():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
+    created = False
     
     conn = DatabaseConnection(connection_string)
-    conn.user_table.add_user(username, password)
+    user = conn.user_table.get_user(username)
+    if user == None:
+        conn.user_table.add_user(username, password)
+        created = True
     conn.close()
     
-    return jsonify({'message': 'User created successfully'}), HTTP_CREATED
+    if created:
+        return jsonify({'message': 'User created successfully'}), HTTP_CREATED
+    
+    else:
+        return jsonify({'message': 'User with that username already exists'}), HTTP_CONFLICT
 
 @app.route('/verify_user', methods=['GET'])
 def verify_user():
@@ -39,10 +47,18 @@ def verify_user():
         return jsonify({'message': 'User not found'}), HTTP_NOT_FOUND
     
     elif password != user.password:
-        return jsonify({'message': 'User found, incorrect password'}), HTTP_UNAUTHORIZED
+        return jsonify({
+            'message': 'User found, incorrect password',
+            'username': username
+        }), HTTP_UNAUTHORIZED
     
     else:
-        return jsonify({'message': 'User found, correct password'}), HTTP_OK
+        return jsonify({
+            'message': 'User found, correct password',
+            'username': username
+        }), HTTP_OK
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)

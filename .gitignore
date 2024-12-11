@@ -1,2 +1,4 @@
 FitTerm.db
 __pycache__
+.vscode
+node_modules
