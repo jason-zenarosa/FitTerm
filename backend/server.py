@@ -1,11 +1,13 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from status_codes import *
 from database_connection import DatabaseConnection
 
 connection_string = "FitTerm.db"
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/create_user', methods=['POST'])
+@app.route('/create-user', methods=['POST'])
 def create_user():
     """
     Endpoint to create a new user.
@@ -29,7 +31,7 @@ def create_user():
     else:
         return jsonify({'message': 'User with that username already exists'}), HTTP_CONFLICT
 
-@app.route('/verify_user', methods=['GET'])
+@app.route('/verify-user', methods=['POST'])
 def verify_user():
     """
     Endpoint to verify a user exists and has entered the correct password.
