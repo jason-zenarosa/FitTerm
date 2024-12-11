@@ -1,5 +1,6 @@
 from database.tables.models.nutrition_entry import NutritionEntry
 from database.tables.database_table import DatabaseTable
+from datetime import datetime
 
 class NutritionTable(DatabaseTable):
 
@@ -12,7 +13,8 @@ class NutritionTable(DatabaseTable):
 
         return nutrition_list
     
-    def add_activity(self, nutrition_entry:NutritionEntry):
+    def add_nutrition_entry(self, associated_user:str, name:str, timestamp:datetime, calories:int):
+        nutrition_entry = NutritionEntry(associated_user, None, name, timestamp, calories)
         self.execute_nonquery(f"""
             INSERT INTO NutritionEntries (associated_user, name, timestamp, calories)
             VALUES ({nutrition_entry})

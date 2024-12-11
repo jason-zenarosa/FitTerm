@@ -1,5 +1,6 @@
 from database.tables.models.activity import Activity
 from database.tables.database_table import DatabaseTable
+from datetime import datetime
 
 class ActivityTable(DatabaseTable):
 
@@ -12,7 +13,8 @@ class ActivityTable(DatabaseTable):
 
         return activity_list
     
-    def add_activity(self, activity:Activity):
+    def add_activity(self, associated_user:str, name:str, description:str, timestamp:datetime, completion:bool):
+        activity = Activity(associated_user, None, name, description, timestamp, completion)
         self.execute_nonquery(f"""
             INSERT INTO Activities (associated_user, name, description, timestamp, completion)
             VALUES ({activity})

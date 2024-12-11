@@ -11,7 +11,8 @@ class UserTable(DatabaseTable):
         
         return User(*user)
     
-    def add_user(self, user:User):
+    def add_user(self, username, password):
+        user = User(username, password)
         self.execute_nonquery(f"""
             INSERT INTO Users (username, password)
             VALUES ({user})                 
