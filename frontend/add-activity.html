@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Activity</title>
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Moirai+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/base.css">
+    <link rel="stylesheet" href="assets/log-in.css">
 </head>
 <body>
-    <h1>Add a New Activity</h1>
-    <form id="myForm">
-        <label for="name">Activity Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+    <div class="header">
+        <h1>FitTerm</h1>
+    </div>
 
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
-
-        <label for="timestamp">Timestamp:</label><br>
-        <input type="datetime-local" id="timestamp" name="timestamp" required><br><br>
-
-        <label for="completion">Completion Status:</label><br>
-        <select id="completion" name="completion" required>
-            <option value="true">Completed</option>
-            <option value="false">Not Completed</option>
-        </select><br><br>
-
-        <button type="submit">Submit</button>
-    </form>
-
+    <div class="form-container">
+        <form id="myForm">
+            <label for="name">Activity Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+    
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+    
+            <label for="timestamp">Timestamp:</label><br>
+            <input type="datetime-local" id="timestamp" name="timestamp" required><br><br>
+    
+            <label for="completion">Completion Status:</label><br>
+            <select id="completion" name="completion" required>
+                <option value="true">Completed</option>
+                <option value="false">Not Completed</option>
+            </select><br><br>
+    
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
     <script>
         document.getElementById('myForm').addEventListener('submit', function(e) {
             e.preventDefault();
