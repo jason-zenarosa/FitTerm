@@ -1,0 +1,20 @@
+* {
+    margin: 0px;
+}
+
+body {
+    font-family: 'Varela Round';
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to right, #558153, #F2C750);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: white;
+    font-family: "Moirai One";
+    font-weight: 400;
+    font-size: xx-large;
+}
