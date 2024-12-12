@@ -32,5 +32,5 @@ python3 ./backend/server.py
 ```
 5. Open the website in your file explorer or VSCode Live Server
 ```
-Index page is located at ./frontend/index.html.
+Index page is located at ./frontend/index.html
 ```
