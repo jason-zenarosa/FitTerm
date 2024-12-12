@@ -4,20 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In Page</title>
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Moirai+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/base.css">
+    <link rel="stylesheet" href="assets/log-in.css">
 </head>
 <body>
-    <form id="myForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br><br>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="header">
+        <h1>FitTerm</h1>
+    </div>
 
-    <div id="response"></div> <!-- Div to display the response -->
+    <div class="form-container">
+        <form id="myForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
 
+        <div id="response"></div> <!-- Div to display the response -->
+    </div>
+    
     <script>
         document.getElementById('myForm').addEventListener('submit', function(e) {
             e.preventDefault();  // Prevents the form from reloading the page
