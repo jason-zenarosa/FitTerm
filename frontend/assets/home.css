@@ -1,3 +1,11 @@
 .activities-container, .nutrition-container {
     border: 1px solid black;
 }
+
+.activity {
+    display: flex;
+}
+.activity p {
+    margin-right: 50px;
+    width: 20%;
+}

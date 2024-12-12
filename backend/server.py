@@ -82,5 +82,32 @@ def add_activity():
         'message': 'Activity added to log',
     }), HTTP_OK
 
+@app.route('/get-activities', methods=['GET'])
+def get_activities():
+    """
+    Endpoint to retrieve activities for a user.
+    Expects 'username' in the request JSON body.
+    """
+
+    username = request.args.get('username')
+
+    conn = DatabaseConnection(connection_string)
+    activities = conn.activity_table.get_activities(username)
+    conn.close()
+
+    activities_json = []
+    for activity in activities:
+        activity_dict = {
+            'associated_user': activity.associated_user,
+            'id': activity.id,
+            'name': activity.name,
+            'description': activity.description, 
+            'timestamp': activity.timestamp,
+            'completion': activity.completion
+        }
+        activities_json.append(activity_dict)
+
+    return jsonify({'activities': activities_json}), 200
+
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
