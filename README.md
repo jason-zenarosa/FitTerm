@@ -1,11 +1,16 @@
 # How to Run FitTerm
 
 ## Requirements:
-- Install Python 3.12
+- Install Python 3.13
 - Install the flask and flask-cors modules for Python using pip:
 ```
+Windows:
 pip install flask
 pip install flask-cors
+
+Mac:
+pip3 install flask
+pip3 install flask-cors
 ```
 
 ## Steps:
