@@ -60,7 +60,27 @@ def verify_user():
             'username': username
         }), HTTP_OK
 
+@app.route('/add-activity', methods=['POST'])
+def add_activity():
+    """
+    Endpoint to add a new activity.
+    Expects 'associated_user', 'name', 'description', 'timestamp', and 'completion' in the request JSON body.
+    """
+    data = request.get_json()
 
+    associated_user = data.get('associated_user')
+    name = data.get('name')
+    description = data.get('description')
+    timestamp = data.get('timestamp')
+    completion = data.get('completion')
+
+    conn = DatabaseConnection(connection_string)
+    conn.activity_table.add_activity(associated_user, name, description, timestamp, completion)
+    conn.close()
+
+    return jsonify({
+        'message': 'Activity added to log',
+    }), HTTP_OK
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)

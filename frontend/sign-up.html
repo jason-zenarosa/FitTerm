@@ -49,13 +49,14 @@
                 },
                 body: JSON.stringify(formData)  // Convert form data to a JSON string
             })
-            .then(response => response.json())  // Parse the JSON response
+            .then(response => response.json())
             .then(data => {
-                window.location.replace('log-in.html');
+                if (data.message === 'User created successfully') {
+                    window.location.replace('log-in.html');  // Redirect to login page on success
+                } else {
+                    document.getElementById('response').innerHTML = data.message;  // Display server message
+                }
             })
-            .catch(error => {
-                console.error('Error:', error);
-            });
         });
     </script>
     

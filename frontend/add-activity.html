@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Activity</title>
+</head>
+<body>
+    <h1>Add a New Activity</h1>
+    <form id="myForm">
+        <label for="name">Activity Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="timestamp">Timestamp:</label><br>
+        <input type="datetime-local" id="timestamp" name="timestamp" required><br><br>
+
+        <label for="completion">Completion Status:</label><br>
+        <select id="completion" name="completion" required>
+            <option value="true">Completed</option>
+            <option value="false">Not Completed</option>
+        </select><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const timestampInput = document.getElementById('timestamp').value;
+            const timestamp = new Date(timestampInput).toISOString().slice(0, 19).replace('T', ' ');
+
+            const formData = {
+                associated_user: sessionStorage.getItem('username'),
+                name: document.getElementById('name').value,
+                description: document.getElementById('description').value,
+                timestamp: timestamp,
+                completion: document.getElementById('completion').value
+            };
+
+            fetch('http://localhost:8080/add-activity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',  // Indicate we're sending JSON
+                },
+                body: JSON.stringify(formData)  // Convert form data to a JSON string
+            })
+            .then(response => response.json())
+            .then(data => {
+                window.location.replace('home.html')
+            })
+        });
+    </script>
+</body>
+</html>

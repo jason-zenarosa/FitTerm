@@ -38,6 +38,10 @@
             })
             .then(response => response.json())  // Parse the JSON response
             .then(data => {
+                if (data.message === 'User found, correct password') {
+                    sessionStorage.setItem('username', data.username)
+                    window.location.replace('home.html');
+                }
                 document.getElementById('response').innerHTML = data.message;  // Display the response message
             })
         });
